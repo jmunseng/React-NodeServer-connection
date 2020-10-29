@@ -1,7 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const https = require("https")
-const User = require("./models/User");
+const Task = require("./models/Task");
 const mongoose = require("mongoose")
 const cors = require("cors")
 
@@ -14,54 +14,36 @@ app.use(bodyParser.json())
 
 
 // mongoose
-mongoose.connect("mongodb://localhost:27017/deakinDB", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://localhost:27017/lastTaskDB", {useNewUrlParser: true, useUnifiedTopology: true})
 
 
-//home route
-app.get ('/', (req, res)=>{
-  const user = {
-        username: "deakin",
-        password : "sit313",
-  }
-  res.send(user)
-})
 
-//register route
-app.post('/register', (req,res)=>{
+//submit route
+app.post('/submit', (req,res)=>{
   
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
+  const task = new Task({
+      task: req.body.task,
+      title: req.body.title,
+      describe: req.body.describe,
+      expireDate: req.body.expireDate,
+      content: req.body.content,
+      condition: req.body.condition,
+      reward: req.body.reward,
+      number: req.body.number
     });
-    user.save()
+    task.save()
     .catch((err) => console.log(err));
-    res.json(('saved to db: ' + user));
+    res.json(('saved to db: ' + task));
     
 })
-
-//login route
-app.post('/login', (req,res)=>{
-    User.findOne({ username: req.body.username},(error,user)=>{
-      if(user!= null){
-          if(!user.password.localeCompare(req.body.password)){
-              res.json('success');
-          }
-          else{
-              res.json('Password is wrong!')
-          }
-      }else{
-        res.json('Username is not registered!')
-      }
-  });
-});
 
 
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 5000;
+  port = 3000;
 }
 
 app.listen(port, (req,res)=>{
-    console.log("Server is running successfullly!")
+    console.log(" 3000 Server is running successfullly!")
 })

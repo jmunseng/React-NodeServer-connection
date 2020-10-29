@@ -1,0 +1,17 @@
+.select, .describe, .worker, .title , .save{width: 800px;margin: auto;padding-bottom: 20px;}
+.title {font-weight: bold; background: rgb(221, 221, 221); text-align: left;padding: 5px 5px;margin-bottom: 20px;clear: left}
+
+.select p {width: 170px;text-align: left;float: left;display: block;}
+.select .radio {width: 600px;float: left;padding-bottom: 20px;}
+.select .radio div {width: 180px;float: left;text-align: center;}
+
+.describe li {text-align: left;height: 30px;}
+.describe li b {width: 150px;display: block; float: left;}
+.describe li input {width: 400px;} 
+
+.setting input {width: 500px;height: 100px;margin-top: 20px;margin-bottom: 20px;}
+
+.worker li {text-align: left;height: 30px;}
+.worker li b {width: 250px;display: block; float: left;}
+
+.save button {width: 100px ;float: right;}
